@@ -43,6 +43,10 @@ createtopic:
 test: ## run unit tests
 	PYTHONDONTWRITEBYTECODE=1 pytest -v .
 
+coverage: ## run coverage
+	PYTHONDONTWRITEBYTECODE=1 coverage run --source=kafkacli -m pytest -v
+	coverage html && coverage report
+
 test-ci: ## run unit tests as CI (within a Docker image)
 	docker build -t kafkacli_ci --build-arg CONFLUENT_MIRROR=$${HTTP_MIRROR:-http://packages.confluent.io} --network=host -f Dockerfile.test .
 	docker run -t --rm -v $(CURDIR):/work -w /work kafkacli_ci run make createtopic test 
