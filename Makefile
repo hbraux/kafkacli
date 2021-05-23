@@ -57,3 +57,5 @@ publish: ## publish Docker image
 	docker push $(DOCKER_REGISTRY)/kafkacli
 
 
+badge:
+	coverage-badge -o coverage.svg

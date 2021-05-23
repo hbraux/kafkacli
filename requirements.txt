@@ -1,0 +1,6 @@
+requests
+pygments
+avro-python3
+kafka-python
+coverage
+coverage-badge
