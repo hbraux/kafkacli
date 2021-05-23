@@ -1,7 +1,7 @@
 FROM alpine
 
 LABEL description "Docker version of kafkacli"
-LABEL usage "docker run --rm -e SITE_KAFKA=kafka kafkacli ARGS..."
+LABEL usage "docker run --rm -e KAFKA_SERVER=kafka kafkacli ARGS..."
 
 RUN apk add --no-cache python3-dev snappy-dev g++ \
     && python3 -m ensurepip \

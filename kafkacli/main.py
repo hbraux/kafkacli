@@ -19,14 +19,14 @@ CRED = '\033[31m'
 CEND = '\033[0m'
 
 # If environment variables are set, use them as default broker/registry
-SITE_KAFKA = os.getenv('SITE_KAFKA')
-BROKER = os.getenv('KAFKA_BROKERS_LIST', SITE_KAFKA + ':9092'
-                   if SITE_KAFKA else None)
-REGISTRY = os.getenv('KAFKA_REGISTRY_URL', 'http://' + SITE_KAFKA + ':8881'
-                     if SITE_KAFKA else None)
+KAFKA_SERVER = os.getenv('KAFKA_SERVER')
+BROKER = os.getenv('KAFKA_BROKERS_LIST', KAFKA_SERVER + ':9092'
+                   if KAFKA_SERVER else None)
+REGISTRY = os.getenv('KAFKA_REGISTRY_URL', 'http://' + KAFKA_SERVER + ':8881'
+                     if KAFKA_SERVER else None)
 DEFAULT_KEY = 'Id'
-HELP_BROKERS = "server:port,... (optional when $KAFKA_BROKERS_LIST or $SITE_KAFKA is set)"  # nopep8
-HELP_REGISTRY = "http://server:port (optional when $KAFKA_REGISTRY_URL or $SITE_KAFKA is set)"  # nopep8
+HELP_BROKERS = "server:port,... (optional when $KAFKA_BROKERS_LIST or $KAFKA_SERVER is set)"  # nopep8
+HELP_REGISTRY = "http://server:port (optional when $KAFKA_REGISTRY_URL or $KAFKA_SERVER is set)"  # nopep8
 
 
 def die(*msg):

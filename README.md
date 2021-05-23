@@ -26,7 +26,7 @@ It supports JSON and AVRO messages (assuming a Schema Registry is running) and p
 It is recommended to use the Docker image which does not require any pre-requisites (except Docker)
 
 ```
-docker run -it --rm -e SITE_KAFKA=myconfluentserver haroldbraux/kafkacli ARGS...
+docker run -it --rm -e KAFKA_SERVER=myconfluentserver docker.pkg.github.com/kafkacli ARGS...
 ```
 
 ## Python Package

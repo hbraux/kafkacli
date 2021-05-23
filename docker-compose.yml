@@ -28,10 +28,10 @@ services:
       - KAFKA_BROKER_ID=1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${SITE_KAFKA:-kafka}:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_SERVER:-kafka}:9092
       - KAFKA_HEAP_OPTS=-Xmx512M -Xms512M
     extra_hosts:
-      - "${SITE_KAFKA:-kafka}:${KAFKA_HOSTIP:-172.17.0.1}"
+      - "${KAFKA_SERVER:-kafka}:${KAFKA_HOSTIP:-172.17.0.1}"
     networks:
       - internal
 
@@ -43,12 +43,12 @@ services:
       - broker
       - zookeeper
     links:
-      - broker:${SITE_KAFKA:-kafka}
+      - broker:${KAFKA_SERVER:-kafka}
     ports:
       # using port 8881 as 8081 conflicts with Flink
       - 8881:8881
     environment:
-      - SCHEMA_REGISTRY_HOST_NAME=${SITE_KAFKA:-kafka}
+      - SCHEMA_REGISTRY_HOST_NAME=${KAFKA_SERVER:-kafka}
       - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
       - SCHEMA_REGISTRY_LISTENERS=http://registry:8881
       - SCHEMA_REGISTRY_HEAP_OPTS=-Xmx256M

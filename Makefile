@@ -2,13 +2,13 @@ PYTHON = python3
 PREFIX = $$HOME/.local
 VERSION = $(shell sed -z -E "s/.*__version__ = '(.+)'.*/\1/g" kafkacli/version.py)
 # assuming Registry repository name is same as Gitlab 
-DOCKER_REGISTRY = $(shell git config --get remote.origin.url | sed -E 's~.*:(.*+)/.*~\1~')
+DOCKER_REGISTRY = ocker.pkg.github.com
 TEST_TOPIC ?= testtopic
 
 .DEFAULT_GOAL := help
 .PHONY: build
 
-export SITE_KAFKA ?= $(shell uname -n)
+export KAFKA_SERVER ?= $(shell uname -n)
 # export DOCKER_HOSTIP = $(shell docker network inspect bridge | sed -n 's/.*Gateway": "\(.*\)"/\1/p')
 
 
