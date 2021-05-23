@@ -3,7 +3,7 @@
 ![Test status](https://github.com/hbraux/kafkacli/workflows/build/badge.svg)
 ![Coverage](https://raw.githubusercontent.com/hbraux/kafkacli/master/coverage.svg)
 
-An advanced Kaka/Confluent Client command line interface (written in Python)
+An advanced Kafka / Confluent Client command line interface (written in Python)
 
 ## Overview
 
@@ -24,7 +24,7 @@ docker run -it --rm --network host -e KAFKA_SERVER=myconfluentserver hbraux/kafk
 
 ### History
 
-* Version 0.1.3 is now stable
+* 0.1.4 (23/05/21) stable version 
 
 ### Installation
 
