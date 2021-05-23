@@ -2,10 +2,9 @@ name: build
 on:
   push:
     branches: [ master ]
-
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
@@ -19,14 +18,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build test container image
-        run: docker build --pull -t docker.pkg.github.com/${{ github.repository }}:test -f Dockerfile.test .
+        run: docker build --pull -t kafkacli_ci -f Dockerfile.test .
       - name: test
-        run:  docker run -t --rm -v $(pwd):/work -w /work docker.pkg.github.com/${{ github.repository }}:test  run make createtopic test
+        run:  docker run -t --rm -v $(pwd):/work -w /work kafkacli_ci run make createtopic test
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: |
-            docker.pkg.github.com/${{ github.repository }}:latest
-
-
+            docker.pkg.github.com/${{ github.repository }}/kafkacli
