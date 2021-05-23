@@ -1,5 +1,7 @@
 # kafkacli
 
+## Overview
+
 An advanced command line interface for Kafka written in Python.
 
 Alternative to the legacy kafka-console-consumer/producer  
@@ -10,7 +12,7 @@ Includes a random messages generator
 
 * Version 0.1.3 is now stable
 
-## Install
+## Install Package
 
 Prerequisites: Python 3.6 or higher
 
@@ -52,5 +54,3 @@ docker run -it --rm -e SITE_KAFKA=myconfluentserver haroldbraux/kafkacli ARGS...
 ```
 
 
-## Still TODO
-* More unit tests
