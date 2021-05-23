@@ -51,6 +51,9 @@ Run script without any argument to get the general help and all available comman
 
 Run script with `COMMAND --help` to get the command options and arguments.
 
+As for Docker, you can set the environment variables `KAFKA_SERVER`, or `KAFKA_BROKERS_LIST` and `KAFKA_REGISTRY_URL` 
+if you don't want to provide them as command line options.
+
 ```
 usage: kafkacli [-h] [-D] [--version]
                 {list,show,register,print,join,count,extract,generate,avro}
