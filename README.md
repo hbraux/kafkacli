@@ -1,19 +1,10 @@
-======
-kafkacli
-======
+# kafkacli
 
-|badge1| |badge2|
+![Test status](https://github.com/hbraux/kafkacli/workflows/build/badge.svg)
 
-.. |badge1| image:: https://github.com/hbraux/kafkacli/workflows/build/badge.svg
-:alt: Build status
-:target: https://github.com/hbraux/pysds/actions
-
-.. |badge2| image:: https://raw.githubusercontent.com/hbraux/kafkacli/master/coverage.svg
-:alt: Coverage
-
+![Coverage](https://raw.githubusercontent.com/hbraux/kafkacli/master/coverage.svg)
 
 An advanced Kaka Client command line interface (written in Python)
-
 
 ## Overview
 
