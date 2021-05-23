@@ -143,7 +143,7 @@ def avro_file(avrofile, action, namespace, schema, pretty, ppretty, debug):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-D', '--debug', action='store_true')
-    subparsers = parser.add_subparsers(title='subcommands')
+    subparsers = parser.add_subparsers(title='commands')
 
     sub1 = subparsers.add_parser("list", help="list topics")
     sub1.set_defaults(func=list_topics)

@@ -24,7 +24,7 @@ install: ## install module
 
 develop: ## install module in development mode
 	@mkdir -p $(PREFIX)
-	@rm -fr	$(PREFIX)/lib/python3.6/site-packages/kafkacli
+	@rm -fr	$(PREFIX)/lib/python3.8/site-packages/kafkacli
 	$(PYTHON) setup.py develop --prefix $(PREFIX)
 
 start: ## start local Kafka cluster and create test data
