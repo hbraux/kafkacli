@@ -1,0 +1,16 @@
+FROM alpine
+
+LABEL description "Docker version of kafkacli"
+LABEL usage "docker run --rm -e SITE_KAFKA=kafka kafkacli ARGS..."
+
+RUN apk add --no-cache python3-dev snappy-dev g++ \
+    && python3 -m ensurepip \
+    && ln -fs /usr/bin/pip3 /usr/bin/pip \
+    && ln -fs /usr/bin/python3 /usr/bin/python
+
+RUN pip3 install --no-cache-dir requests pygments avro-python3 kafka-python python-snappy
+
+COPY . /tmp/install
+RUN cd /tmp/install && python3 setup.py install && rm -fr *
+
+CMD kafkacli

@@ -1,0 +1,42 @@
+FROM ubuntu:18.04
+
+# Install OpenJDK8 and python3 
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get -qq install -y openjdk-8-jdk curl netcat python3 python3-pip
+
+ARG CONFLUENT_MIRROR=http://packages.confluent.io
+
+ENV CONFLUENT_MAJOR_VERSION 4.1
+ENV CONFLUENT_VERSION 4.1.1
+ENV SCALA_VERSION 2.11
+
+ENV CONFLUENT_HOME /opt/confluent
+ENV REGISTRY_PORT 8881
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+ENV PATH $PATH:$JAVA_HOME/bin
+ENV PATH $PATH:$CONFLUENT_HOME/bin
+
+# Supported profiles: low (heap/2), min (small heap), default (no change)
+ENV JVM_PROFILE low
+
+# JARs to removed from the build (to make image smaller)
+ENV CLEANUPJARS="monitoring-interceptors confluent-security confluent-control-center confluent-support-metrics confluent-rebalancer ksql camus kafka-rest kafka-connect*"
+
+
+# Build a Kafka/Confluent image
+RUN set -x && mkdir -p /opt  && \
+    curl -s ${CONFLUENT_MIRROR}/archive/${CONFLUENT_MAJOR_VERSION}/confluent-${CONFLUENT_VERSION}-${SCALA_VERSION}.tar.gz | tar xzf - -C /tmp \
+    && mv /tmp/confluent-${CONFLUENT_VERSION} ${CONFLUENT_HOME} \
+    && rm -fr $CONFLUENT_HOME/src $CONFLUENT_HOME/share/doc \
+    && for j in $CLEANUPJARS; do rm -fr $CONFLUENT_HOME/share/java/$j; done 
+
+# Install python packages
+RUN pip3 install avro-python3 aiokafka pytest requests pygments
+
+COPY confluent.sh /
+
+ENTRYPOINT ["/confluent.sh"]
+
+CMD ["start"]
+
+
