@@ -21,4 +21,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: hbraux/kafkacli:latest
+          tags: |
+            hbraux/kafkacli:latest
+            hbraux/kafkacli:0.1.4

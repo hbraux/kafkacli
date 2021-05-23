@@ -3,3 +3,4 @@
 .eggs/
 .coverage
 htmlcov/
+*.egg-info
