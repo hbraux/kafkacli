@@ -1,8 +1,8 @@
 PYTHON = python3
 PREFIX = $$HOME/.local
 VERSION = $(shell sed -z -E "s/.*__version__ = '(.+)'.*/\1/g" kafkacli/version.py)
-# assuming Registry repository name is same as Gitlab 
-DOCKER_REGISTRY = ocker.pkg.github.com
+# assuming Registry repository name is same as Gitlab
+DOCKER_REGISTRY = $(shell git config --get remote.origin.url | sed -E 's~.*:(.*+)/.*~\1~')
 TEST_TOPIC ?= testtopic
 
 .DEFAULT_GOAL := help
@@ -10,7 +10,6 @@ TEST_TOPIC ?= testtopic
 
 export KAFKA_SERVER ?= $(shell uname -n)
 # export DOCKER_HOSTIP = $(shell docker network inspect bridge | sed -n 's/.*Gateway": "\(.*\)"/\1/p')
-
 
 help:
 	@echo $$(fgrep -h "## " $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/^\([a-z][a-z_\-]*\): ##/\\nmake \\\e[1;34m\1\\\e[0m\t:/g')
@@ -55,7 +54,6 @@ build: ## build Docker image
 publish: ## publish Docker image 
 	docker push $(DOCKER_REGISTRY)/kafkacli:$(VERSION)
 	docker push $(DOCKER_REGISTRY)/kafkacli
-
 
 badge:
 	coverage-badge -o coverage.svg

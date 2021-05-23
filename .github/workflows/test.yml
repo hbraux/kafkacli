@@ -5,25 +5,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v1
-        with:
-          registry: docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build test container image
         run: docker build --pull -t kafkacli_ci -f Dockerfile.test .
       - name: test
         run:  docker run -t --rm -v $(pwd):/work -w /work kafkacli_ci run make createtopic test
-      - name: Build container image
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: hbraux
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: |
-            docker.pkg.github.com/${{ github.repository }}/kafkacli
+          tags: hbraux/kafkacli:latest
