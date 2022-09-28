@@ -80,6 +80,7 @@ commands:
 ### History
 
 * 0.1.4 (23/05/21) stable version 
+* 0.1.5 (28/09/22) use default port 8081 for Registry
 
 ### Example
 

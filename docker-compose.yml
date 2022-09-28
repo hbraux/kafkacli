@@ -45,12 +45,11 @@ services:
     links:
       - broker:${KAFKA_SERVER:-kafka}
     ports:
-      # using port 8881 as 8081 conflicts with Flink
-      - 8881:8881
+      - 8081:8081
     environment:
       - SCHEMA_REGISTRY_HOST_NAME=${KAFKA_SERVER:-kafka}
       - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
-      - SCHEMA_REGISTRY_LISTENERS=http://registry:8881
+      - SCHEMA_REGISTRY_LISTENERS=http://registry:8081
       - SCHEMA_REGISTRY_HEAP_OPTS=-Xmx256M
     networks:
       - internal

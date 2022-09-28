@@ -14,7 +14,7 @@ from kafkacli import Client
 from datetime import datetime, timedelta
 
 BROKER = socket.gethostname() + ':9092'
-REGISTRY = 'http://localhost:8881'
+REGISTRY = 'http://localhost:8081'
 TOPIC = os.getenv("TEST_TOPIC", "test")
 SCHEMA_FILE = "tests/sample.asvc"
 SEED = 1

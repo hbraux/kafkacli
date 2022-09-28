@@ -22,7 +22,7 @@ CEND = '\033[0m'
 KAFKA_SERVER = os.getenv('KAFKA_SERVER')
 BROKER = os.getenv('KAFKA_BROKERS_LIST', KAFKA_SERVER + ':9092'
                    if KAFKA_SERVER else None)
-REGISTRY = os.getenv('KAFKA_REGISTRY_URL', 'http://' + KAFKA_SERVER + ':8881'
+REGISTRY = os.getenv('KAFKA_REGISTRY_URL', 'http://' + KAFKA_SERVER + ':8081'
                      if KAFKA_SERVER else None)
 DEFAULT_KEY = 'Id'
 HELP_BROKERS = "server:port,... (optional when $KAFKA_BROKERS_LIST or $KAFKA_SERVER is set)"  # nopep8
