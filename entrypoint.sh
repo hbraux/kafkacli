@@ -9,5 +9,5 @@ Alternatively you can use kafkacli options -b BROKERS -r REGISTRY to specify bro
 ---
 "
 fi
-
+. /venv/bin/activate
 exec kafkacli $*
